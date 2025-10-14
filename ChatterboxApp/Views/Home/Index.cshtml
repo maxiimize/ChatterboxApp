@@ -1,8 +1,839 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    Layout = null;
+    ViewData["Title"] = "Chatterbox - NätOnNät Kundtjänst";
 }
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <style>
+        :root {
+            --primary-color: #0095DA;
+            --primary-dark: #00537C;
+            --primary-light: #00B4E6;
+            --accent-red: #E30613;
+            --secondary-color: #003D5C;
+            --background: #F5F5F5;
+            --surface: #FFFFFF;
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+            --border-color: #E0E0E0;
+            --error: #E30613;
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 4px 16px rgba(0,149,218,0.2);
+        }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(180deg, rgba(227, 6, 19, 0.25) 0%, rgba(227, 6, 19, 0.18) 10%, rgba(227, 6, 19, 0.08) 22%, rgba(0, 149, 218, 0.10) 38%, rgba(0, 149, 218, 0.28) 55%, rgba(0, 149, 218, 0.55) 75%, rgba(0, 83, 124, 0.95) 100% ), linear-gradient(180deg, #E3F2FD 0%, #BBDEFB 25%, #90CAF9 50%, #64B5F6 75%, #42A5F5 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 0;
+            box-shadow: var(--shadow);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+            .header::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background: var(--accent-red);
+            }
+
+        /* Logga */
+        .brand {
+            display: flex;
+            justify-content: center;
+            margin-bottom: .5rem;
+        }
+
+        .brand-logo {
+            height: 40px;
+            width: auto;
+            display: block;
+            filter: drop-shadow(0 1px 1px rgba(0,0,0,.12));
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .tagline {
+            margin-top: 0.5rem;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        .chat-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .welcome-card {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            border-top: 4px solid var(--primary-color);
+        }
+
+            .welcome-card h2 {
+                color: var(--primary-dark);
+                margin-bottom: 1rem;
+                font-weight: 700;
+            }
+
+            .welcome-card p {
+                margin-bottom: 1rem;
+                color: var(--text-secondary);
+                line-height: 1.7;
+            }
+
+        /* === KNAPPAR – gemensam stil === */
+        .btn-start, .btn-send, .btn-secondary, .btn-close-error {
+            color: #fff;
+            border: none;
+            padding: 0.65rem 1.25rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: var(--shadow);
+            transition: background-position .4s ease, transform .2s ease, box-shadow .2s ease, filter .2s ease, color .2s ease, border-color .2s ease;
+        }
+
+        /* Primär (Skicka) */
+        .btn-send, .btn-start {
+            background: var(--primary-color);
+            background-image: linear-gradient(90deg, var(--primary-color) 0%, var(--primary-color) 50%, var(--primary-dark) 100%);
+            background-size: 200% 100%;
+            background-position: 0 0;
+        }
+
+            .btn-send:hover, .btn-start:hover {
+                background-image: linear-gradient(90deg, var(--accent-red) 0%, var(--primary-color) 100%);
+                background-position: 100% 0;
+                transform: translateY(-2px);
+                box-shadow: var(--shadow-hover);
+            }
+
+        /* Sekundär (Ny chatt) – outline som fylls vid hover */
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-dark);
+            border: 2px solid var(--primary-color);
+        }
+
+            .btn-secondary:hover {
+                color: #fff;
+                border-color: transparent;
+                background-image: linear-gradient(90deg, var(--accent-red) 0%, var(--primary-color) 100%);
+                background-size: 200% 100%;
+                background-position: 100% 0;
+                transform: translateY(-2px);
+                box-shadow: var(--shadow-hover);
+            }
+
+            .btn-start:active, .btn-send:active, .btn-secondary:active {
+                transform: translateY(0);
+                filter: brightness(0.97);
+            }
+
+            .btn-start:focus-visible, .btn-send:focus-visible, .btn-secondary:focus-visible, .btn-close-error:focus-visible {
+                outline: none;
+                box-shadow: 0 0 0 3px rgba(0,149,218,.15), 0 0 0 6px rgba(227,6,19,.25);
+            }
+
+        .chat-container {
+            background: var(--surface);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            height: 500px;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .chat-history {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column-reverse;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            background: #FAFAFA;
+            border-radius: 4px;
+        }
+
+            .chat-history::-webkit-scrollbar {
+                width: 8px;
+            }
+
+            .chat-history::-webkit-scrollbar-track {
+                background: var(--background);
+                border-radius: 4px;
+            }
+
+            .chat-history::-webkit-scrollbar-thumb {
+                background: var(--primary-color);
+                border-radius: 4px;
+            }
+
+        .message {
+            padding: 1rem;
+            border-radius: 8px;
+            max-width: 85%;
+            word-wrap: break-word;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .message-user {
+            background: var(--primary-color);
+            color: white;
+            align-self: flex-end;
+            margin-left: auto;
+            border-bottom-right-radius: 2px;
+        }
+
+        .message-assistant {
+            background: var(--surface);
+            color: var(--text-primary);
+            align-self: flex-start;
+            border: 1px solid var(--border-color);
+            border-bottom-left-radius: 2px;
+            border-left: 3px solid var(--accent-red);
+        }
+
+        .message-header {
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .message-time {
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            opacity: 0.7;
+        }
+
+        .chat-input-container {
+            border-top: 2px solid var(--border-color);
+            padding-top: 1rem;
+            background: white;
+        }
+
+        .message-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+
+            .message-input:focus {
+                outline: none;
+                border-color: var(--primary-color);
+                box-shadow: 0 0 0 3px rgba(0, 149, 218, 0.1);
+            }
+
+        .input-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.5rem;
+            gap: .5rem;
+        }
+
+        .char-counter {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .actions {
+            display: flex;
+            gap: .5rem;
+            flex-wrap: wrap;
+        }
+
+        .typing-indicator {
+            padding: 1rem;
+            border-radius: 8px;
+            max-width: 85%;
+            background: var(--surface);
+            border: 1px solid var(--border-color);
+            border-left: 3px solid var(--accent-red);
+            align-self: flex-start;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .typing-dots {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem;
+        }
+
+        .typing-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+
+            .typing-dot:nth-child(1) {
+                animation-delay: -0.32s;
+            }
+
+            .typing-dot:nth-child(2) {
+                animation-delay: -0.16s;
+            }
+
+        @@keyframes bounce {
+            0%, 80%, 100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+
+            40% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        .error-message {
+            background: #FFF3CD;
+            border: 2px solid var(--error);
+            border-left: 4px solid var(--error);
+            color: #856404;
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .footer {
+            background: transparent;
+            border-top: none;
+            box-shadow: none;
+            border-radius: 0;
+            text-align: center;
+            padding: 1.5rem 1rem;
+            margin-top: auto;
+            color: rgba(255,255,255,0.9);
+        }
+
+            .footer::before {
+                display: none;
+            }
+
+        .no-messages {
+            text-align: center;
+            color: var(--text-secondary);
+            padding: 2rem;
+            font-style: italic;
+        }
+
+        /* === Ny chatt–modal (matchar tema) === */
+        .nc-backdrop[hidden] {
+            display: none !important;
+        }
+
+        .nc-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 50;
+            background: rgba(4, 18, 28, .45);
+            backdrop-filter: blur(3px);
+            display: grid;
+            place-items: center;
+            padding: 1rem;
+            cursor: pointer; /* <-- ny (hint) */
+        }
+
+        .nc-dialog {
+            width: min(520px, 100%);
+            background: var(--surface);
+            color: var(--text-primary);
+            border-radius: 12px;
+            box-shadow: var(--shadow-hover);
+            border: 1px solid var(--border-color);
+            overflow: clip;
+            transform: translateY(8px);
+            opacity: 0;
+            animation: ncIn .25s ease-out forwards;
+            cursor: default; /* <-- ny (klick i rutan ska inte stänga) */
+        }
+
+        @@keyframes ncIn {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .nc-topbar {
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-red), var(--primary-color));
+        }
+
+        .nc-body {
+            padding: 1.25rem 1.25rem .5rem;
+        }
+
+        .nc-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: .25rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+            .nc-title::before {
+                content: "";
+                width: 10px;
+                height: 10px;
+                border-radius: 999px;
+                background: var(--primary-color);
+                box-shadow: 0 0 0 2px rgba(0,149,218,.15);
+            }
+
+        .nc-desc {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .nc-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: .5rem;
+            padding: 1rem 1.25rem 1.25rem;
+        }
+
+        .nc-btn-primary, .nc-btn-secondary {
+            border-radius: 8px;
+            font-weight: 600;
+            padding: .65rem 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            box-shadow: var(--shadow);
+            transition: background-position .4s ease, transform .2s ease, box-shadow .2s ease, filter .2s ease, color .2s ease, border-color .2s ease;
+        }
+
+        .nc-btn-primary {
+            color: #fff;
+            background: var(--primary-color);
+            background-image: linear-gradient(90deg, var(--primary-color) 0%, var(--primary-color) 50%, var(--primary-dark) 100%);
+            background-size: 200% 100%;
+            background-position: 0 0;
+        }
+
+            .nc-btn-primary:hover {
+                background-image: linear-gradient(90deg, var(--accent-red) 0%, var(--primary-color) 100%);
+                background-position: 100% 0;
+                transform: translateY(-2px);
+                box-shadow: var(--shadow-hover);
+            }
+
+        .nc-btn-secondary {
+            background: transparent;
+            color: var(--primary-dark);
+            border: 2px solid var(--primary-color);
+        }
+
+            .nc-btn-secondary:hover {
+                color: #fff;
+                border-color: transparent;
+                background-image: linear-gradient(90deg, var(--accent-red) 0%, var(--primary-color) 100%);
+                background-size: 200% 100%;
+                background-position: 100% 0;
+                transform: translateY(-2px);
+                box-shadow: var(--shadow-hover);
+            }
+
+            .nc-btn-primary:focus-visible, .nc-btn-secondary:focus-visible {
+                outline: none;
+                box-shadow: 0 0 0 3px rgba(0,149,218,.15), 0 0 0 6px rgba(227,6,19,.25);
+            }
+
+        @@media (min-width: 768px) {
+            .container {
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 2rem;
+            }
+
+            .header {
+                border-radius: 8px;
+            }
+
+                .header h1 {
+                    font-size: 2.5rem;
+                }
+
+            .welcome-card {
+                padding: 3rem;
+            }
+
+            .brand-logo {
+                height: 48px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="brand">
+                <img class="brand-logo" src="@Url.Content("~/images/netonnet-logo.png")" alt="NetOnNet" width="251" height="66" loading="eager" decoding="async" />
+            </div>
+            <h1>🤖 Chatterbox</h1>
+            <p class="tagline">Din AI-assistent för hemelektronik hos NätOnNät</p>
+        </header>
+
+        <main class="chat-main">
+            <div class="welcome-card" id="welcomeCard">
+                <h2>👋 Hej! Jag är Chatterbox</h2>
+                <p>Jag är expert på hemelektronik!</p>
+                <p>Fråga mig om TV, datorer, mobiler, ljudutrustning, hushållsapparater och allt annat inom hemelektronik.</p>
+                <button onclick="startChat()" class="btn-start">Starta chatt</button>
+            </div>
+
+            <div class="chat-container" id="chatContainer" style="display: none;">
+                <div class="chat-history" id="chatHistory">
+                    <p class="no-messages">Inga meddelanden ännu. Börja chatta!</p>
+                </div>
+
+                <div class="chat-input-container">
+                    <form id="chatForm">
+                        <textarea id="messageInput" class="message-input" placeholder="Skriv ditt meddelande här..." rows="3" maxlength="2000" required></textarea>
+                        <div class="input-footer">
+                            <span class="char-counter" id="charCounter">0/2000</span>
+                            <div class="actions">
+                                <button type="button" class="btn-secondary" id="newChatBtn" onclick="openNewChatModal()" aria-label="Starta en ny chatt">Ny chatt</button>
+                                <button type="submit" class="btn-send" id="sendBtn">Skicka</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Ny chatt – Modal -->
+            <div id="newChatModal" class="nc-backdrop" hidden>
+                <div class="nc-dialog" role="dialog" aria-modal="true" aria-labelledby="ncTitle" aria-describedby="ncDesc">
+                    <div class="nc-topbar"></div>
+                    <div class="nc-body">
+                        <h3 id="ncTitle" class="nc-title">Starta en ny chatt?</h3>
+                        <p id="ncDesc" class="nc-desc">
+                            Din nuvarande konversation kommer att rensas. Detta går inte att ångra. Vill du fortsätta?
+                        </p>
+                    </div>
+                    <div class="nc-footer">
+                        <button type="button" class="nc-btn-secondary" id="ncCancelBtn">Avbryt</button>
+                        <button type="button" class="nc-btn-primary" id="ncConfirmBtn">Ny chatt</button>
+                    </div>
+                </div>
+            </div>
+            <!-- /Ny chatt – Modal -->
+
+            <div class="error-message" id="errorMessage" style="display: none;">
+                <p id="errorText"></p>
+                <button onclick="hideError()" class="btn-close-error">Stäng</button>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 NätOnNät | Chatterbox AI-assistent</p>
+        </footer>
+    </div>
+
+    <script>
+        const chatForm = document.getElementById('chatForm');
+        const messageInput = document.getElementById('messageInput');
+        const chatHistory = document.getElementById('chatHistory');
+        const errorMessage = document.getElementById('errorMessage');
+        const errorText = document.getElementById('errorText');
+        const charCounter = document.getElementById('charCounter');
+        const sendBtn = document.getElementById('sendBtn');
+        const welcomeCard = document.getElementById('welcomeCard');
+        const chatContainer = document.getElementById('chatContainer');
+
+        // Modal refs
+        const modal = document.getElementById('newChatModal');
+        const ncCancelBtn = document.getElementById('ncCancelBtn');
+        const ncConfirmBtn = document.getElementById('ncConfirmBtn');
+        const ncDialog = document.querySelector('#newChatModal .nc-dialog'); // NY
+        let ncPrevFocus = null;
+
+        messageInput.addEventListener('input', () => {
+            const length = messageInput.value.length;
+            charCounter.textContent = `${length}/2000`;
+            charCounter.style.color = length > 1900 ? 'var(--error)' : 'var(--text-secondary)';
+        });
+
+        function startChat() {
+            welcomeCard.style.display = 'none';
+            chatContainer.style.display = 'flex';
+            messageInput.focus();
+        }
+
+        chatForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            await sendMessage();
+        });
+
+        async function sendMessage() {
+            const message = messageInput.value.trim();
+            if (!message) { showError('Vänligen skriv ett meddelande'); return; }
+            if (message.length > 2000) { showError('Meddelandet är för långt (max 2000 tecken)'); return; }
+
+            setFormState(false);
+            showTypingIndicator();
+            hideError();
+
+            try {
+                const response = await fetch('/api/chat/send', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Ett fel uppstod vid kommunikation med servern');
+                }
+
+                const data = await response.json();
+
+                if (data.success) {
+                    messageInput.value = '';
+                    charCounter.textContent = '0/2000';
+                    hideTypingIndicator();
+                    updateChatHistory(data.chatHistory);
+                } else {
+                    throw new Error('Ogiltigt svar från servern');
+                }
+
+            } catch (error) {
+                hideTypingIndicator();
+                showError(error.message || 'Ett fel uppstod vid skickning av meddelandet');
+            } finally {
+                setFormState(true);
+                messageInput.focus();
+            }
+        }
+
+        function showTypingIndicator() {
+            const existingIndicator = document.getElementById('typingIndicator');
+            if (existingIndicator) return;
+            const indicator = document.createElement('div');
+            indicator.id = 'typingIndicator';
+            indicator.className = 'typing-indicator';
+            indicator.innerHTML = `
+                <div class="message-header">Chatterbox</div>
+                <div class="typing-dots">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            `;
+            chatHistory.insertBefore(indicator, chatHistory.firstChild);
+        }
+
+        function hideTypingIndicator() {
+            const indicator = document.getElementById('typingIndicator');
+            if (indicator) indicator.remove();
+        }
+
+        function updateChatHistory(messages) {
+            chatHistory.innerHTML = '';
+            if (!messages || messages.length === 0) {
+                chatHistory.innerHTML = '<p class="no-messages">Inga meddelanden ännu. Börja chatta!</p>';
+                return;
+            }
+            messages.forEach(msg => {
+                const el = createMessageElement(msg);
+                chatHistory.appendChild(el);
+            });
+        }
+
+        function createMessageElement(message) {
+            const div = document.createElement('div');
+            const isUser = message.role === 'user';
+
+            div.className = `message ${isUser ? 'message-user' : 'message-assistant'}`;
+
+            const header = document.createElement('div');
+            header.className = 'message-header';
+            header.textContent = isUser ? 'Du' : 'Chatterbox';
+
+            const content = document.createElement('div');
+            content.className = 'message-content';
+            content.textContent = message.content;
+
+            const time = document.createElement('div');
+            time.className = 'message-time';
+            time.textContent = formatTimestamp(message.timestamp);
+
+            div.appendChild(header);
+            div.appendChild(content);
+            div.appendChild(time);
+
+            return div;
+        }
+
+        function formatTimestamp(timestamp) {
+            const date = new Date(timestamp);
+            const now = new Date();
+            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            const messageDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+            const timeString = date.toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' });
+
+            if (messageDate.getTime() === today.getTime()) return `Idag ${timeString}`;
+            if (messageDate.getTime() === today.getTime() - 86400000) return `Igår ${timeString}`;
+            return date.toLocaleString('sv-SE', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        /* === Ny chatt – modal logik (ersätter confirm) === */
+        function openNewChatModal() {
+            if (!modal) return;
+            ncPrevFocus = document.activeElement;
+            modal.hidden = false;
+            setTimeout(() => ncConfirmBtn?.focus(), 0);
+            document.addEventListener('keydown', onNcKeydown);
+        }
+        function closeNewChatModal() {
+            if (!modal) return;
+            modal.hidden = true;
+            document.removeEventListener('keydown', onNcKeydown);
+            ncPrevFocus && ncPrevFocus.focus();
+        }
+        function onNcKeydown(e) {
+            if (e.key === 'Escape') { e.preventDefault(); closeNewChatModal(); return; }
+            if (e.key !== 'Tab') return;
+            const focusables = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            const f = Array.from(focusables).filter(el => !el.hasAttribute('disabled'));
+            if (!f.length) return;
+            const first = f[0], last = f[f.length - 1];
+            if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+            else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+        ncCancelBtn?.addEventListener('click', closeNewChatModal);
+        ncConfirmBtn?.addEventListener('click', performNewChat);
+
+        // NYTT: stäng modalen när man klickar på dimman (inte inne i rutan)
+        modal.addEventListener('pointerdown', (e) => {
+          if (ncDialog && !ncDialog.contains(e.target)) {
+            e.preventDefault();
+            closeNewChatModal();
+          }
+        });
+
+        async function performNewChat() {
+            showTypingIndicator();
+            try {
+                const response = await fetch('/api/chat/clear', { method: 'POST' });
+                if (!response.ok) throw new Error('Kunde inte rensa chatthistorik');
+                const data = await response.json();
+                if (data.success) {
+                    chatHistory.innerHTML = '<p class="no-messages">Chatthistoriken har rensats. Börja en ny konversation!</p>';
+                }
+            } catch (error) {
+                showError('Ett fel uppstod vid rensning av chatthistoriken');
+            } finally {
+                hideTypingIndicator();
+                closeNewChatModal();
+            }
+        }
+
+        function showError(message) {
+            errorText.textContent = message;
+            errorMessage.style.display = 'block';
+            setTimeout(() => { hideError(); }, 5000);
+        }
+
+        function hideError() { errorMessage.style.display = 'none'; }
+        function setFormState(enabled) { messageInput.disabled = !enabled; sendBtn.disabled = !enabled; }
+
+        async function loadChatHistory() {
+            try {
+                const response = await fetch('/api/chat/history');
+                if (!response.ok) throw new Error('Kunde inte ladda chatthistorik');
+                const data = await response.json();
+                if (data.success && data.messages && data.messages.length > 0) {
+                    welcomeCard.style.display = 'none';
+                    chatContainer.style.display = 'flex';
+                    updateChatHistory(data.messages);
+                }
+            } catch (error) { /* no-op */ }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadChatHistory();
+            messageInput.focus();
+        });
+
+        messageInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>

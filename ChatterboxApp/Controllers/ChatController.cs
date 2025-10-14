@@ -1,8 +1,9 @@
 ﻿using ChatterboxApp.Models;
 using ChatterboxApp.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
-namespace ChatterboxApp.Controllers
+namespace Chatterbox.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -22,7 +23,6 @@ namespace ChatterboxApp.Controllers
             _logger = logger;
         }
 
-        // Sends a message and gets AI response
         [HttpPost("send")]
         public async Task<IActionResult> SendMessage([FromBody] ChatRequest request)
         {
@@ -77,7 +77,6 @@ namespace ChatterboxApp.Controllers
             }
         }
 
-        // Gets the current chat history in descending order
         [HttpGet("history")]
         public IActionResult GetHistory()
         {
@@ -98,7 +97,6 @@ namespace ChatterboxApp.Controllers
             }
         }
 
-        // Clears the current chat session
         [HttpPost("clear")]
         public IActionResult ClearHistory()
         {
@@ -114,7 +112,7 @@ namespace ChatterboxApp.Controllers
             }
         }
 
-        // Health check endpoint
+      
         [HttpGet("health")]
         public IActionResult HealthCheck()
         {

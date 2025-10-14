@@ -1,0 +1,27 @@
+{
+  "sessionId": "97c3f63e-af05-4441-8f62-1109057c6901",
+  "messages": [
+    {
+      "role": "user",
+      "content": "halloj",
+      "timestamp": "2025-10-15T00:03:52.8731273+02:00"
+    },
+    {
+      "role": "assistant",
+      "content": "Hej! Hur kan jag hj\u00E4lpa dig idag n\u00E4r det g\u00E4ller hemelektronik?",
+      "timestamp": "2025-10-15T00:03:53.3459086+02:00"
+    },
+    {
+      "role": "user",
+      "content": "vem \u00F6r du",
+      "timestamp": "2025-10-15T00:03:56.851851+02:00"
+    },
+    {
+      "role": "assistant",
+      "content": "Hej! Jag \u00E4r Chatterbox, en kundtj\u00E4nstmedarbetare p\u00E5 N\u00E4tonn\u00E4t. Jag \u00E4r h\u00E4r f\u00F6r att hj\u00E4lpa dig med fr\u00E5gor om hemelektronik. Hur kan jag hj\u00E4lpa dig idag?",
+      "timestamp": "2025-10-15T00:03:57.5987036+02:00"
+    }
+  ],
+  "createdAt": "2025-10-15T00:03:48.8118659+02:00",
+  "lastUpdated": "2025-10-15T00:03:57.5987139+02:00"
+}

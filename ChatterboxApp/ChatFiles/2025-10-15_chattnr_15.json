@@ -1,0 +1,47 @@
+{
+  "sessionId": "4aa43800-d026-4db6-8489-a38c8ee5a1d8",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hej! Jag letar efter en tv.",
+      "timestamp": "2025-10-15T01:13:10.8955488+02:00"
+    },
+    {
+      "role": "assistant",
+      "content": "Hej! Vad roligt att du letar efter en TV. Hur kan jag hj\u00E4lpa dig idag?",
+      "timestamp": "2025-10-15T01:13:11.4593969+02:00"
+    },
+    {
+      "role": "user",
+      "content": "Vad f\u00F6r tv rekommenderar du?",
+      "timestamp": "2025-10-15T01:13:24.6437033+02:00"
+    },
+    {
+      "role": "assistant",
+      "content": "Jag rekommenderar en smart TV med 4K Ultra HD-uppl\u00F6sning f\u00F6r en fantastisk bildkvalitet och m\u00F6jligheten att streama dina favoritprogram och filmer. En TV fr\u00E5n v\u00E4lk\u00E4nda m\u00E4rken som Samsung, Sony eller LG brukar vara bra val. Har du n\u00E5gra specifika \u00F6nskem\u00E5l eller krav f\u00F6r din nya TV?",
+      "timestamp": "2025-10-15T01:13:25.4452441+02:00"
+    },
+    {
+      "role": "user",
+      "content": "Juste, jag beh\u00F6ver en soffa ocks\u00E5. Kan du fixa en \u00E5t mig?",
+      "timestamp": "2025-10-15T01:13:44.1299115+02:00"
+    },
+    {
+      "role": "assistant",
+      "content": "Jag \u00E4r h\u00E4r f\u00F6r att hj\u00E4lpa till med fr\u00E5gor om hemelektronik s\u00E5som TV, datorer, mobiler, hush\u00E5llsapparater, ljudutrustning, etc. Tyv\u00E4rr kan jag inte hj\u00E4lpa till med fr\u00E5gor om m\u00F6bler eller inredning. Om du har n\u00E5gra fr\u00E5gor om hemelektronik, tveka inte att fr\u00E5ga!",
+      "timestamp": "2025-10-15T01:13:45.0312445+02:00"
+    },
+    {
+      "role": "user",
+      "content": "Vet du vad en soffa \u00E4r?",
+      "timestamp": "2025-10-15T01:13:54.4018564+02:00"
+    },
+    {
+      "role": "assistant",
+      "content": "Absolut, jag k\u00E4nner till begreppet \u0022soffa\u0022. Men som jag n\u00E4mnde tidigare, kan jag endast hj\u00E4lpa till med fr\u00E5gor om hemelektronik. Om du har n\u00E5gra fr\u00E5gor eller behov av hj\u00E4lp inom det omr\u00E5det, \u00E4r du v\u00E4lkommen att fr\u00E5ga mig!",
+      "timestamp": "2025-10-15T01:13:55.1691187+02:00"
+    }
+  ],
+  "createdAt": "2025-10-15T01:13:01.9901191+02:00",
+  "lastUpdated": "2025-10-15T01:13:55.1691257+02:00"
+}

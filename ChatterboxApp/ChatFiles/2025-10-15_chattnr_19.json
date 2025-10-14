@@ -1,0 +1,27 @@
+{
+  "sessionId": "5ad084a0-2bb3-45f4-92c2-5817c7365020",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hej!",
+      "timestamp": "2025-10-15T01:26:35.8876966+02:00"
+    },
+    {
+      "role": "assistant",
+      "content": "Hej! Hur kan jag hj\u00E4lpa dig idag?",
+      "timestamp": "2025-10-15T01:26:36.3073108+02:00"
+    },
+    {
+      "role": "user",
+      "content": "Hur \u00E4r det med dig?",
+      "timestamp": "2025-10-15T01:26:43.4339134+02:00"
+    },
+    {
+      "role": "assistant",
+      "content": "Tack f\u00F6r att du fr\u00E5gar! Jag m\u00E5r bra, tack. Hur kan jag hj\u00E4lpa dig idag?",
+      "timestamp": "2025-10-15T01:26:43.8665287+02:00"
+    }
+  ],
+  "createdAt": "2025-10-15T01:26:15.5192876+02:00",
+  "lastUpdated": "2025-10-15T01:26:43.8665405+02:00"
+}
