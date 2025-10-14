@@ -1,0 +1,17 @@
+{
+  "sessionId": "e4284d66-069c-45fd-ad31-81ea6bb056a6",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hur gammal \u00E4r Donald Trump?",
+      "timestamp": "2025-10-15T01:16:52.6739019+02:00"
+    },
+    {
+      "role": "assistant",
+      "content": "Jag ber om urs\u00E4kt, men jag fokuserar endast p\u00E5 att hj\u00E4lpa till med fr\u00E5gor relaterade till hemelektronik. Om du har n\u00E5gra fr\u00E5gor om TV, datorer, mobiler eller liknande, \u00E4r jag mer \u00E4n glad att hj\u00E4lpa dig.",
+      "timestamp": "2025-10-15T01:16:53.4882466+02:00"
+    }
+  ],
+  "createdAt": "2025-10-15T01:16:42.9174805+02:00",
+  "lastUpdated": "2025-10-15T01:16:53.4882692+02:00"
+}

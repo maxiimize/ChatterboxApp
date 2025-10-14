@@ -1,0 +1,57 @@
+{
+  "sessionId": "5d43daa0-d084-4e37-9416-4e252b0dd2c6",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hej!",
+      "timestamp": "2025-10-15T01:15:02.1439471+02:00"
+    },
+    {
+      "role": "assistant",
+      "content": "Hej! Hur kan jag hj\u00E4lpa dig idag n\u00E4r det g\u00E4ller hemelektronik?",
+      "timestamp": "2025-10-15T01:15:02.5619394+02:00"
+    },
+    {
+      "role": "user",
+      "content": "Jag vill k\u00F6pa en tv, kan du hj\u00E4lpa mig?",
+      "timestamp": "2025-10-15T01:15:14.2867728+02:00"
+    },
+    {
+      "role": "assistant",
+      "content": "Absolut! Jag kan hj\u00E4lpa dig att v\u00E4lja en TV. Vilken typ av TV \u00E4r du intresserad av? Har du n\u00E5gra specifika krav eller \u00F6nskem\u00E5l n\u00E4r det g\u00E4ller storlek, m\u00E4rke, funktioner eller pris? Jag hj\u00E4lper dig g\u00E4rna att hitta r\u00E4tt TV f\u00F6r dig.",
+      "timestamp": "2025-10-15T01:15:14.9489774+02:00"
+    },
+    {
+      "role": "user",
+      "content": "Du f\u00E5r best\u00E4mma vilken tv. Men jag beh\u00F6ver en soffa med.",
+      "timestamp": "2025-10-15T01:15:30.8044099+02:00"
+    },
+    {
+      "role": "assistant",
+      "content": "Jag \u00E4r specialiserad p\u00E5 hemelektronik och kan tyv\u00E4rr inte hj\u00E4lpa till med m\u00F6bler som soffor. Men om du har n\u00E5gra fr\u00E5gor om TV eller annan hemelektronik, s\u00E5 \u00E4r jag h\u00E4r f\u00F6r att hj\u00E4lpa till!",
+      "timestamp": "2025-10-15T01:15:31.4377913+02:00"
+    },
+    {
+      "role": "user",
+      "content": "S\u00E4ljer ni n\u00E5gra matvaror d\u00E5?",
+      "timestamp": "2025-10-15T01:15:43.9794712+02:00"
+    },
+    {
+      "role": "assistant",
+      "content": "Jag \u00E4r specialiserad p\u00E5 hemelektronik och kan endast hj\u00E4lpa till med fr\u00E5gor relaterade till TV, datorer, mobiler, hush\u00E5llsapparater, ljudutrustning och liknande produkter. Om du har n\u00E5gra fr\u00E5gor inom det omr\u00E5det, s\u00E5 \u00E4r jag mer \u00E4n villig att hj\u00E4lpa till.",
+      "timestamp": "2025-10-15T01:15:44.6842965+02:00"
+    },
+    {
+      "role": "user",
+      "content": "Men jag vill handla mat!",
+      "timestamp": "2025-10-15T01:15:53.1230734+02:00"
+    },
+    {
+      "role": "assistant",
+      "content": "Jag \u00E4r specialiserad p\u00E5 hemelektronik och kan endast hj\u00E4lpa till med fr\u00E5gor inom det omr\u00E5det. Om du har n\u00E5gra fr\u00E5gor om TV, datorer, mobiler, hush\u00E5llsapparater, ljudutrustning eller liknande produkter, s\u00E5 \u00E4r jag h\u00E4r f\u00F6r att hj\u00E4lpa till.",
+      "timestamp": "2025-10-15T01:15:53.8236941+02:00"
+    }
+  ],
+  "createdAt": "2025-10-15T01:14:59.2307838+02:00",
+  "lastUpdated": "2025-10-15T01:15:53.8237066+02:00"
+}

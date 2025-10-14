@@ -1,0 +1,27 @@
+{
+  "sessionId": "c8e94e45-6912-431b-a988-20923a4927b0",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hej!",
+      "timestamp": "2025-10-15T00:52:59.460432+02:00"
+    },
+    {
+      "role": "assistant",
+      "content": "Hej! Hur kan jag hj\u00E4lpa dig idag?",
+      "timestamp": "2025-10-15T00:52:59.829629+02:00"
+    },
+    {
+      "role": "user",
+      "content": "hur \u00E4r det med di",
+      "timestamp": "2025-10-15T00:53:09.6018404+02:00"
+    },
+    {
+      "role": "assistant",
+      "content": "Jag tror att du kanske menade att fr\u00E5ga hur det \u00E4r med mig? Jag m\u00E5r bra, tack! Hur kan jag hj\u00E4lpa dig idag n\u00E4r det g\u00E4ller hemelektronik?",
+      "timestamp": "2025-10-15T00:53:10.0686524+02:00"
+    }
+  ],
+  "createdAt": "2025-10-15T00:52:43.5673541+02:00",
+  "lastUpdated": "2025-10-15T00:53:10.0686691+02:00"
+}

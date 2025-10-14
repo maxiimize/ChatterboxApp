@@ -1,0 +1,37 @@
+{
+  "sessionId": "643d2183-6806-4224-a937-4d1403e0a0ce",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hej! Hur kan jag hj\u00E4lpa dig?",
+      "timestamp": "2025-10-15T00:02:43.0529066+02:00"
+    },
+    {
+      "role": "assistant",
+      "content": "Hej! Jag har problem med min TV, den verkar inte sl\u00E5 p\u00E5. Kan du hj\u00E4lpa mig att fels\u00F6ka problemet?",
+      "timestamp": "2025-10-15T00:02:43.5777202+02:00"
+    },
+    {
+      "role": "user",
+      "content": "Absolut",
+      "timestamp": "2025-10-15T00:02:50.982228+02:00"
+    },
+    {
+      "role": "assistant",
+      "content": "Bra att h\u00F6ra! F\u00F6rst och fr\u00E4mst, har du f\u00F6rs\u00E4krat dig om att TV:n \u00E4r korrekt inkopplad i eluttaget och att str\u00F6mbrytaren \u00E4r p\u00E5slagen?",
+      "timestamp": "2025-10-15T00:02:51.5496939+02:00"
+    },
+    {
+      "role": "user",
+      "content": "Men \u00E4r inte du hj\u00E4lpredan h\u00E4r?",
+      "timestamp": "2025-10-15T00:03:00.6482455+02:00"
+    },
+    {
+      "role": "assistant",
+      "content": "Jag ber om urs\u00E4kt om det har blivit n\u00E5got missf\u00F6rst\u00E5nd. Jag \u00E4r h\u00E4r f\u00F6r att hj\u00E4lpa till med fr\u00E5gor om hemelektronik. Om du har n\u00E5gra fr\u00E5gor inom det omr\u00E5det, tveka inte att fr\u00E5ga!",
+      "timestamp": "2025-10-15T00:03:01.2472101+02:00"
+    }
+  ],
+  "createdAt": "2025-10-15T00:02:32.6214535+02:00",
+  "lastUpdated": "2025-10-15T00:03:01.2472206+02:00"
+}

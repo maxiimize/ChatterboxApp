@@ -1,0 +1,57 @@
+{
+  "sessionId": "d2b7f5d5-23c8-4497-bb60-2f49f6f35187",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hej!",
+      "timestamp": "2025-10-15T01:22:16.7477269+02:00"
+    },
+    {
+      "role": "assistant",
+      "content": "Hej! Hur kan jag hj\u00E4lpa dig idag n\u00E4r det g\u00E4ller hemelektronik?",
+      "timestamp": "2025-10-15T01:22:17.1923403+02:00"
+    },
+    {
+      "role": "user",
+      "content": "Vem \u00E4r du?",
+      "timestamp": "2025-10-15T01:22:21.1279331+02:00"
+    },
+    {
+      "role": "assistant",
+      "content": "Jag \u00E4r Chatterbox, en kundtj\u00E4nstmedarbetare p\u00E5 N\u00E4tonn\u00E4t som \u00E4r expert p\u00E5 hemelektronik. Om du har n\u00E5gra fr\u00E5gor eller beh\u00F6ver hj\u00E4lp inom det omr\u00E5det \u00E4r jag h\u00E4r f\u00F6r att assistera dig. Hur kan jag hj\u00E4lpa dig idag?",
+      "timestamp": "2025-10-15T01:22:21.7968692+02:00"
+    },
+    {
+      "role": "user",
+      "content": "Toppen tack",
+      "timestamp": "2025-10-15T01:22:31.1281261+02:00"
+    },
+    {
+      "role": "assistant",
+      "content": "Inga problem, jag finns h\u00E4r om du beh\u00F6ver hj\u00E4lp med n\u00E5got inom hemelektronik. Ha en bra dag!",
+      "timestamp": "2025-10-15T01:22:31.5286761+02:00"
+    },
+    {
+      "role": "user",
+      "content": "tack",
+      "timestamp": "2025-10-15T01:22:34.9564226+02:00"
+    },
+    {
+      "role": "assistant",
+      "content": "Du \u00E4r v\u00E4lkommen!",
+      "timestamp": "2025-10-15T01:22:35.2168135+02:00"
+    },
+    {
+      "role": "user",
+      "content": "vad \u00E4r din favorittelefon?",
+      "timestamp": "2025-10-15T01:22:43.1782328+02:00"
+    },
+    {
+      "role": "assistant",
+      "content": "Jag \u00E4r ledsen, men jag kan bara hj\u00E4lpa till med fr\u00E5gor om hemelektronik. Om du har n\u00E5gra fr\u00E5gor relaterade till TV, datorer, mobiler, hush\u00E5llsapparater, ljudutrustning eller liknande, \u00E4r jag mer \u00E4n glad att hj\u00E4lpa dig.",
+      "timestamp": "2025-10-15T01:22:44.022995+02:00"
+    }
+  ],
+  "createdAt": "2025-10-15T01:21:48.5339791+02:00",
+  "lastUpdated": "2025-10-15T01:22:44.0230075+02:00"
+}
