@@ -1,4 +1,4 @@
-﻿namespace Chatterbox.Models
+﻿namespace ChatterboxApp.Models
 {
     //Represents a single chat message in the conversation
     public class ChatMessage
