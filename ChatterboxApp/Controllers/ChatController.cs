@@ -23,15 +23,12 @@ namespace Chatterbox.Controllers
             _logger = logger;
         }
 
-        /// <summary>
-        /// Sends a message and gets AI response
-        /// </summary>
         [HttpPost("send")]
         public async Task<IActionResult> SendMessage([FromBody] ChatRequest request)
         {
             try
             {
-                // Validate request (G requirement #2)
+                // Validate request 
                 if (!ModelState.IsValid || !request.IsValid())
                 {
                     return BadRequest(new { error = "Ogiltigt meddelande" });
@@ -80,9 +77,6 @@ namespace Chatterbox.Controllers
             }
         }
 
-        /// <summary>
-        /// Gets the current chat history in descending order
-        /// </summary>
         [HttpGet("history")]
         public IActionResult GetHistory()
         {
@@ -103,9 +97,6 @@ namespace Chatterbox.Controllers
             }
         }
 
-        /// <summary>
-        /// Clears the current chat session
-        /// </summary>
         [HttpPost("clear")]
         public IActionResult ClearHistory()
         {
@@ -121,9 +112,7 @@ namespace Chatterbox.Controllers
             }
         }
 
-        /// <summary>
-        /// Health check endpoint
-        /// </summary>
+      
         [HttpGet("health")]
         public IActionResult HealthCheck()
         {
