@@ -1,6 +1,6 @@
 ﻿@{
     Layout = null;
-    ViewData["Title"] = "Chatterbox - NätOnNät Kundtjänst";
+    ViewData["Title"] = "Chatterbox - NetOnNet Kundtjänst";
 }
 <!DOCTYPE html>
 <html lang="sv">
@@ -33,10 +33,11 @@
 
         body {
             font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            background: var(--background);
+            background: linear-gradient(180deg, rgba(227, 6, 19, 0.25) 0%, rgba(227, 6, 19, 0.18) 10%, rgba(227, 6, 19, 0.08) 22%, rgba(0, 149, 218, 0.10) 38%, rgba(0, 149, 218, 0.28) 55%, rgba(0, 149, 218, 0.55) 75%, rgba(0, 83, 124, 0.95) 100% ), linear-gradient(180deg, #E3F2FD 0%, #BBDEFB 25%, #90CAF9 50%, #64B5F6 75%, #42A5F5 100%);
             color: var(--text-primary);
             line-height: 1.6;
             min-height: 100vh;
+            background-attachment: fixed;
         }
 
         .container {
@@ -110,23 +111,47 @@
 
         .btn-start, .btn-send, .btn-clear, .btn-close-error {
             background: var(--primary-color);
-            color: white;
+            color: #fff;
             border: none;
             padding: 0.75rem 2rem;
             border-radius: 4px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow);
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            box-shadow: var(--shadow);
+            transition: background-position .4s ease, transform .2s ease, box-shadow .2s ease, filter .2s ease;
+            background-image: linear-gradient(90deg, var(--primary-color) 0%, var(--primary-color) 50%, var(--primary-dark) 100%);
+            background-size: 200% 100%;
+            background-position: 0 0;
         }
 
-            .btn-start:hover, .btn-send:hover {
-                background: var(--primary-dark);
+            .btn-start:hover, .btn-send:hover, .btn-clear:hover, .btn-close-error:hover {
+                background-image: linear-gradient(90deg, var(--accent-red) 0%, var(--primary-color) 100%);
+                background-position: 100% 0;
                 transform: translateY(-2px);
                 box-shadow: var(--shadow-hover);
+            }
+
+            .btn-start:active, .btn-send:active, .btn-clear:active, .btn-close-error:active {
+                transform: translateY(0);
+                filter: brightness(0.97);
+            }
+
+            .btn-start:focus-visible, .btn-send:focus-visible, .btn-clear:focus-visible, .btn-close-error:focus-visible {
+                outline: none;
+                box-shadow: 0 0 0 3px rgba(0,149,218,.15), 0 0 0 6px rgba(227,6,19,.25);
+            }
+
+        /* Bevara att Rensa-knappen är mörk till vardags men får gradient på hover */
+        .btn-clear {
+            background: var(--secondary-color);
+            background-image: none;
+        }
+
+            .btn-clear:hover {
+                background-image: linear-gradient(90deg, var(--accent-red) 0%, var(--primary-color) 100%);
             }
 
         .chat-container {
@@ -291,18 +316,15 @@
             }
 
         @@keyframes bounce {
-            0%, 80%, 100%
+            0%, 80%, 100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
 
-        {
-            transform: scale(0.8);
-            opacity: 0.5;
-        }
-
-        40% {
-            transform: scale(1.2);
-            opacity: 1;
-        }
-
+            40% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
         }
 
         .error-message {
@@ -344,26 +366,23 @@
         }
 
         @@media (min-width: 768px) {
-            .container
-
-        {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .header {
-            border-radius: 8px;
-        }
-
-            .header h1 {
-                font-size: 2.5rem;
+            .container {
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 2rem;
             }
 
-        .welcome-card {
-            padding: 3rem;
-        }
+            .header {
+                border-radius: 8px;
+            }
 
+                .header h1 {
+                    font-size: 2.5rem;
+                }
+
+            .welcome-card {
+                padding: 3rem;
+            }
         }
     </style>
 </head>
@@ -371,7 +390,7 @@
     <div class="container">
         <header class="header">
             <h1>🤖 Chatterbox</h1>
-            <p class="tagline">Din AI-assistent för hemelektronik hos NätOnNät</p>
+            <p class="tagline">Din AI-assistent för hemelektronik hos NetOnNet</p>
         </header>
 
         <main class="chat-main">
@@ -412,7 +431,7 @@
         </main>
 
         <footer class="footer">
-            <p>&copy; 2025 NätOnNät | Chatterbox AI-assistent</p>
+            <p>&copy; 2025 NetOnNet | Chatterbox AI-assistent</p>
         </footer>
     </div>
 
@@ -430,7 +449,6 @@
         messageInput.addEventListener('input', () => {
             const length = messageInput.value.length;
             charCounter.textContent = `${length}/2000`;
-
             if (length > 1900) {
                 charCounter.style.color = 'var(--error)';
             } else {
@@ -469,10 +487,8 @@
             try {
                 const response = await fetch('/api/chat/send', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ message: message })
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message })
                 });
 
                 if (!response.ok) {
@@ -490,7 +506,6 @@
                 } else {
                     throw new Error('Ogiltigt svar från servern');
                 }
-
             } catch (error) {
                 console.error('Error:', error);
                 hideTypingIndicator();
@@ -503,9 +518,7 @@
 
         function showTypingIndicator() {
             const existingIndicator = document.getElementById('typingIndicator');
-            if (existingIndicator) {
-                return;
-            }
+            if (existingIndicator) return;
 
             const indicator = document.createElement('div');
             indicator.id = 'typingIndicator';
@@ -518,25 +531,20 @@
                     <div class="typing-dot"></div>
                 </div>
             `;
-
             chatHistory.insertBefore(indicator, chatHistory.firstChild);
         }
 
         function hideTypingIndicator() {
             const indicator = document.getElementById('typingIndicator');
-            if (indicator) {
-                indicator.remove();
-            }
+            if (indicator) indicator.remove();
         }
 
         function updateChatHistory(messages) {
             chatHistory.innerHTML = '';
-
             if (!messages || messages.length === 0) {
                 chatHistory.innerHTML = '<p class="no-messages">Inga meddelanden ännu. Börja chatta!</p>';
                 return;
             }
-
             messages.forEach(msg => {
                 const messageElement = createMessageElement(msg);
                 chatHistory.appendChild(messageElement);
@@ -574,10 +582,7 @@
             const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
             const messageDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
 
-            const timeString = date.toLocaleTimeString('sv-SE', {
-                hour: '2-digit',
-                minute: '2-digit'
-            });
+            const timeString = date.toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' });
 
             if (messageDate.getTime() === today.getTime()) {
                 return `Idag ${timeString}`;
@@ -595,20 +600,13 @@
         }
 
         async function clearChat() {
-            if (!confirm('Är du säker på att du vill rensa chatthistoriken?')) {
-                return;
-            }
+            if (!confirm('Är du säker på att du vill rensa chatthistoriken?')) return;
 
             showTypingIndicator();
 
             try {
-                const response = await fetch('/api/chat/clear', {
-                    method: 'POST'
-                });
-
-                if (!response.ok) {
-                    throw new Error('Kunde inte rensa chatthistorik');
-                }
+                const response = await fetch('/api/chat/clear', { method: 'POST' });
+                if (!response.ok) throw new Error('Kunde inte rensa chatthistorik');
 
                 const data = await response.json();
 
@@ -616,7 +614,6 @@
                     hideTypingIndicator();
                     chatHistory.innerHTML = '<p class="no-messages">Chatthistoriken har rensats. Börja en ny konversation!</p>';
                 }
-
             } catch (error) {
                 console.error('Error:', error);
                 hideTypingIndicator();
@@ -627,10 +624,7 @@
         function showError(message) {
             errorText.textContent = message;
             errorMessage.style.display = 'block';
-
-            setTimeout(() => {
-                hideError();
-            }, 5000);
+            setTimeout(() => { hideError(); }, 5000);
         }
 
         function hideError() {
@@ -645,10 +639,7 @@
         async function loadChatHistory() {
             try {
                 const response = await fetch('/api/chat/history');
-
-                if (!response.ok) {
-                    throw new Error('Kunde inte ladda chatthistorik');
-                }
+                if (!response.ok) throw new Error('Kunde inte ladda chatthistorik');
 
                 const data = await response.json();
 
@@ -657,7 +648,6 @@
                     chatContainer.style.display = 'flex';
                     updateChatHistory(data.messages);
                 }
-
             } catch (error) {
                 console.error('Error loading chat history:', error);
             }

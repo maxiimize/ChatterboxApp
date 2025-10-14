@@ -1,0 +1,17 @@
+{
+  "sessionId": "54797ee9-71f3-4545-bfa0-4a71f9a6b3bc",
+  "messages": [
+    {
+      "role": "user",
+      "content": "hej",
+      "timestamp": "2025-10-15T00:46:01.9250981+02:00"
+    },
+    {
+      "role": "assistant",
+      "content": "Hej! V\u00E4lkommen till N\u00E4tonn\u00E4t kundtj\u00E4nst. Hur kan jag hj\u00E4lpa dig idag?",
+      "timestamp": "2025-10-15T00:46:02.4225137+02:00"
+    }
+  ],
+  "createdAt": "2025-10-15T00:44:59.0574015+02:00",
+  "lastUpdated": "2025-10-15T00:46:02.4225312+02:00"
+}
