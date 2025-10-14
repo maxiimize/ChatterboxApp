@@ -1,4 +1,4 @@
-﻿using Chatterbox.Models;
+﻿using ChatterboxApp.Models;
 
 namespace ChatterboxApp.Models
 {
