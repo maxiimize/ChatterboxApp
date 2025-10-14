@@ -7,6 +7,8 @@ namespace ChatterboxApp.Services
     {
         private readonly ChatSession _currentSession;
         private readonly string _chatFilesDirectory;
+        private string? _currentFileName;
+        private readonly object _saveLock = new object();
 
         public ChatHistoryService()
         {
@@ -34,6 +36,7 @@ namespace ChatterboxApp.Services
             if (message.IsValid())
             {
                 _currentSession.AddMessage(message);
+                SaveAllChatsToFile();
             }
         }
 
@@ -49,22 +52,29 @@ namespace ChatterboxApp.Services
 
         public void SaveAllChatsToFile()
         {
-            try
+            lock (_saveLock)
             {
-                if (_currentSession.GetMessageCount() == 0)
+                try
                 {
-                    return;
+                    if (_currentSession.GetMessageCount() == 0)
+                    {
+                        return;
+                    }
+
+                    if (_currentFileName == null)
+                    {
+                        _currentFileName = GenerateFileName();
+                    }
+
+                    var filePath = Path.Combine(_chatFilesDirectory, _currentFileName);
+                    var jsonContent = SerializeSession();
+
+                    File.WriteAllText(filePath, jsonContent);
                 }
-
-                var fileName = GenerateFileName();
-                var filePath = Path.Combine(_chatFilesDirectory, fileName);
-                var jsonContent = SerializeSession();
-
-                File.WriteAllText(filePath, jsonContent);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Fel vid sparande av chat: {ex.Message}");
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Fel vid sparande av chat: {ex.Message}");
+                }
             }
         }
 
@@ -162,6 +172,7 @@ namespace ChatterboxApp.Services
         public void ClearCurrentSession()
         {
             _currentSession.Messages.Clear();
+            _currentFileName = null;
         }
     }
 }
