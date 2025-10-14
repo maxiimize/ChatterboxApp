@@ -1,0 +1,17 @@
+{
+  "sessionId": "e67cc3ca-7cf4-424a-8288-06aa9a3fb678",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hej p\u00E5 dig!",
+      "timestamp": "2025-10-14T23:51:33.8490095+02:00"
+    },
+    {
+      "role": "assistant",
+      "content": "Hej! Hur kan jag hj\u00E4lpa dig idag?",
+      "timestamp": "2025-10-14T23:51:34.4852072+02:00"
+    }
+  ],
+  "createdAt": "2025-10-14T23:51:28.3042967+02:00",
+  "lastUpdated": "2025-10-14T23:51:34.4852263+02:00"
+}

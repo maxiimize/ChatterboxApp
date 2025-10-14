@@ -3,7 +3,6 @@ using System.Text.Json;
 
 namespace ChatterboxApp.Services
 {
-    // Service for managing chat history and file persistence
     public class ChatHistoryService
     {
         private readonly ChatSession _currentSession;
@@ -12,13 +11,10 @@ namespace ChatterboxApp.Services
         public ChatHistoryService()
         {
             _currentSession = new ChatSession();
-
-            // ChatFiles directory at same level as Program.cs 
             _chatFilesDirectory = Path.Combine(Directory.GetCurrentDirectory(), "ChatFiles");
             EnsureDirectoryExists();
         }
 
-        // Ensures the ChatFiles directory exists
         private void EnsureDirectoryExists()
         {
             if (!Directory.Exists(_chatFilesDirectory))
@@ -27,13 +23,11 @@ namespace ChatterboxApp.Services
             }
         }
 
-        // Gets the current chat session
         public ChatSession GetCurrentSession()
         {
             return _currentSession;
         }
 
-        // Adds a message to the current session
         public void AddMessage(string role, string content)
         {
             var message = new ChatMessage(role, content);
@@ -43,26 +37,23 @@ namespace ChatterboxApp.Services
             }
         }
 
-        // Gets all messages in descending order (newest first)
         public List<ChatMessage> GetMessagesDescending()
         {
             return _currentSession.GetMessagesDescending();
         }
 
-        // Gets all messages in ascending order (oldest first)
         public List<ChatMessage> GetMessagesAscending()
         {
             return _currentSession.Messages.OrderBy(m => m.Timestamp).ToList();
         }
 
-        // Saves all chats to file when app closes 
         public void SaveAllChatsToFile()
         {
             try
             {
                 if (_currentSession.GetMessageCount() == 0)
                 {
-                    return; // No messages to save
+                    return;
                 }
 
                 var fileName = GenerateFileName();
@@ -70,8 +61,6 @@ namespace ChatterboxApp.Services
                 var jsonContent = SerializeSession();
 
                 File.WriteAllText(filePath, jsonContent);
-
-                Console.WriteLine($"Chat sparad till: {filePath}");
             }
             catch (Exception ex)
             {
@@ -79,14 +68,48 @@ namespace ChatterboxApp.Services
             }
         }
 
-        // Generates a unique filename for the chat history
         private string GenerateFileName()
         {
-            var timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
-            return $"chat_{timestamp}_{_currentSession.SessionId.Substring(0, 8)}.json";
+            var today = DateTime.Now.ToString("yyyy-MM-dd");
+            var serialNumber = GetNextSerialNumber(today);
+
+            return $"{today}_chattnr_{serialNumber:D2}.json";
         }
 
-        // Serializes the current session to JSON
+        private int GetNextSerialNumber(string date)
+        {
+            try
+            {
+                var existingFiles = Directory.GetFiles(_chatFilesDirectory, $"{date}_chattnr_*.json");
+
+                if (existingFiles.Length == 0)
+                {
+                    return 1;
+                }
+
+                var maxNumber = 0;
+                foreach (var file in existingFiles)
+                {
+                    var fileName = Path.GetFileNameWithoutExtension(file);
+                    var parts = fileName.Split('_');
+
+                    if (parts.Length >= 3 && int.TryParse(parts[2], out int number))
+                    {
+                        if (number > maxNumber)
+                        {
+                            maxNumber = number;
+                        }
+                    }
+                }
+
+                return maxNumber + 1;
+            }
+            catch
+            {
+                return 1;
+            }
+        }
+
         private string SerializeSession()
         {
             var options = new JsonSerializerOptions
@@ -98,7 +121,6 @@ namespace ChatterboxApp.Services
             return JsonSerializer.Serialize(_currentSession, options);
         }
 
-        // Loads a chat history from file
         public ChatSession? LoadChatFromFile(string fileName)
         {
             try
@@ -120,7 +142,6 @@ namespace ChatterboxApp.Services
             }
         }
 
-        // Gets all saved chat files
         public List<string> GetAllChatFiles()
         {
             try
@@ -138,7 +159,6 @@ namespace ChatterboxApp.Services
             }
         }
 
-        // Clears the current session
         public void ClearCurrentSession()
         {
             _currentSession.Messages.Clear();

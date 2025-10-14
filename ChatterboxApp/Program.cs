@@ -1,18 +1,11 @@
 using ChatterboxApp.Services;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container
 builder.Services.AddControllersWithViews();
-
-// Register custom services
 builder.Services.AddSingleton<IAzureOpenAIService, AzureOpenAIService>();
 builder.Services.AddSingleton<ChatHistoryService>();
 
-// Add CORS for API calls
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
@@ -25,7 +18,6 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -42,19 +34,51 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-// Ensure ChatFiles directory exists
 var chatFilesPath = Path.Combine(Directory.GetCurrentDirectory(), "ChatFiles");
+Console.WriteLine($"=== CHATFILES PATH: {chatFilesPath} ===");
+
 if (!Directory.Exists(chatFilesPath))
 {
     Directory.CreateDirectory(chatFilesPath);
+    Console.WriteLine("ChatFiles-mapp skapad");
+}
+else
+{
+    Console.WriteLine("ChatFiles-mapp finns redan");
 }
 
-// Save chat history on application shutdown
 var lifetime = app.Services.GetRequiredService<IHostApplicationLifetime>();
+
 lifetime.ApplicationStopping.Register(() =>
 {
-    var historyService = app.Services.GetRequiredService<ChatHistoryService>();
-    historyService.SaveAllChatsToFile();
+    Console.WriteLine("========================================");
+    Console.WriteLine("APPLICATION STOPPING - FÖRSÖKER SPARA!");
+    Console.WriteLine("========================================");
+
+    try
+    {
+        var historyService = app.Services.GetRequiredService<ChatHistoryService>();
+        Console.WriteLine("ChatHistoryService hämtad från DI");
+
+        historyService.SaveAllChatsToFile();
+
+        Console.WriteLine("SaveAllChatsToFile() anropad");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"FEL VID SPARANDE: {ex.Message}");
+        Console.WriteLine($"STACK TRACE: {ex.StackTrace}");
+    }
+
+    Console.WriteLine("========================================");
 });
 
+Console.WriteLine("========================================");
+Console.WriteLine("APPLIKATION STARTAR");
+Console.WriteLine($"Working Directory: {Directory.GetCurrentDirectory()}");
+Console.WriteLine("STÄNG MED CTRL+C FÖR ATT SPARA!");
+Console.WriteLine("========================================");
+
 app.Run();
+
+Console.WriteLine("app.Run() avslutad");

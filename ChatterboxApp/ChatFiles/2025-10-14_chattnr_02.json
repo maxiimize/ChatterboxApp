@@ -1,0 +1,27 @@
+{
+  "sessionId": "d08d6088-495f-4f65-87d6-93b8243a8387",
+  "messages": [
+    {
+      "role": "user",
+      "content": "nej",
+      "timestamp": "2025-10-14T23:52:08.4752776+02:00"
+    },
+    {
+      "role": "assistant",
+      "content": "Hej! Hur kan jag hj\u00E4lpa dig idag n\u00E4r det g\u00E4ller fr\u00E5gor om hemelektronik?",
+      "timestamp": "2025-10-14T23:52:08.9892521+02:00"
+    },
+    {
+      "role": "user",
+      "content": "nej",
+      "timestamp": "2025-10-14T23:52:12.0020846+02:00"
+    },
+    {
+      "role": "assistant",
+      "content": "Hej! Jag \u00E4r h\u00E4r f\u00F6r att hj\u00E4lpa till med fr\u00E5gor om hemelektronik. Om du har n\u00E5gra fr\u00E5gor eller beh\u00F6ver hj\u00E4lp, tveka inte att fr\u00E5ga.",
+      "timestamp": "2025-10-14T23:52:12.562612+02:00"
+    }
+  ],
+  "createdAt": "2025-10-14T23:52:04.6128377+02:00",
+  "lastUpdated": "2025-10-14T23:52:12.5626323+02:00"
+}
