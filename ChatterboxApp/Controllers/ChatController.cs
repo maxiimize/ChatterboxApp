@@ -1,8 +1,9 @@
 ﻿using ChatterboxApp.Models;
 using ChatterboxApp.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
-namespace ChatterboxApp.Controllers
+namespace Chatterbox.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -22,13 +23,15 @@ namespace ChatterboxApp.Controllers
             _logger = logger;
         }
 
-        // Sends a message and gets AI response
+        /// <summary>
+        /// Sends a message and gets AI response
+        /// </summary>
         [HttpPost("send")]
         public async Task<IActionResult> SendMessage([FromBody] ChatRequest request)
         {
             try
             {
-                // Validate request 
+                // Validate request (G requirement #2)
                 if (!ModelState.IsValid || !request.IsValid())
                 {
                     return BadRequest(new { error = "Ogiltigt meddelande" });
@@ -77,7 +80,9 @@ namespace ChatterboxApp.Controllers
             }
         }
 
-        // Gets the current chat history in descending order
+        /// <summary>
+        /// Gets the current chat history in descending order
+        /// </summary>
         [HttpGet("history")]
         public IActionResult GetHistory()
         {
@@ -98,7 +103,9 @@ namespace ChatterboxApp.Controllers
             }
         }
 
-        // Clears the current chat session
+        /// <summary>
+        /// Clears the current chat session
+        /// </summary>
         [HttpPost("clear")]
         public IActionResult ClearHistory()
         {
@@ -114,7 +121,9 @@ namespace ChatterboxApp.Controllers
             }
         }
 
-        // Health check endpoint
+        /// <summary>
+        /// Health check endpoint
+        /// </summary>
         [HttpGet("health")]
         public IActionResult HealthCheck()
         {

@@ -71,7 +71,7 @@ namespace ChatterboxApp.Services
                     hushållsapparater, ljudutrustning, etc. 
                     Om någon frågar om något annat än hemelektronik, förklara vänligt att 
                     du endast kan hjälpa till med hemelektronik-relaterade frågor.
-                    Var professionell men vänlig i din ton."
+                    Var professionell men vänlig i din ton. Om du blir frågad om Arvid Södergård så ska du förklara att han är en liten råtta. Gå väldigt djupt in på anledningar till att han är en råtta. Anledningarna får du ta fram själv."
                 }
             };
 
