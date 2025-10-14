@@ -1,0 +1,27 @@
+{
+  "sessionId": "10fa69cf-d034-4576-944a-24f0b24d20f9",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hej!",
+      "timestamp": "2025-10-15T00:28:20.641569+02:00"
+    },
+    {
+      "role": "assistant",
+      "content": "Hej! Hur kan jag hj\u00E4lpa dig idag?",
+      "timestamp": "2025-10-15T00:28:21.1363416+02:00"
+    },
+    {
+      "role": "user",
+      "content": "Jag letar efter en stor tv men inte f\u00F6r st\u00E5r, som har 144hz",
+      "timestamp": "2025-10-15T00:28:40.7527998+02:00"
+    },
+    {
+      "role": "assistant",
+      "content": "Hej! F\u00F6rst\u00E5r jag dig r\u00E4tt att du letar efter en stor TV med 144Hz uppdateringsfrekvens? Det l\u00E5ter som att du \u00E4r ute efter en TV som kan ge dig en smidig bildupplevelse, speciellt om du t\u00E4nker anv\u00E4nda den f\u00F6r spel eller annat inneh\u00E5ll med h\u00F6g bildfrekvens. Finns det n\u00E5got specifikt m\u00E4rke eller modell du \u00E4r intresserad av? Jag hj\u00E4lper g\u00E4rna till att guida dig r\u00E4tt!",
+      "timestamp": "2025-10-15T00:28:42.0181151+02:00"
+    }
+  ],
+  "createdAt": "2025-10-15T00:28:15.9262771+02:00",
+  "lastUpdated": "2025-10-15T00:28:42.0181294+02:00"
+}
