@@ -2,6 +2,8 @@
 
 namespace ChatterboxApp.Models
 {
+
+    // Represents a chat request from the user
     public class ChatRequest
     {
         [Required(ErrorMessage = "Meddelande är obligatoriskt")]
