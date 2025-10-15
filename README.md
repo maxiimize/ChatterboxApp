@@ -37,7 +37,7 @@ Chatterbox är en intelligent chatbot som arbetar på NetOnNets kundtjänst. Han
 
 ### 2. Klona projektet
 ```bash
-git clone [YOUR-REPO-URL]
+git clone [https://github.com/maxiimize/ChatterboxApp.git]
 cd Chatterbox
 ```
 
@@ -45,7 +45,7 @@ cd Chatterbox
 
 #### A. Sätt environment variable (Windows)
 ```cmd
-setx OPENAI_API_KEY "854V56KY31n4jOv9qreQh96pvg0mHLlP6a3pkPmVV0Bmnasmlme8JQQJ99BJACfhMk5XJ3w3AAABACOGsTdQ"
+setx OPENAIKEY "854V56KY31n4jOv9qreQh96pvg0mHLlP6a3pkPmVV0Bmnasmlme8JQQJ99BJACfhMk5XJ3w3AAABACOGsTdQ"
 ```
 
 #### B. Uppdatera `Services/AzureOpenAIService.cs`
@@ -149,7 +149,7 @@ Health check för tjänsten.
 ## 💾 Filhantering
 
 ### ChatFiles-mappen
-Chatthistorik sparas automatiskt när appen stängs av:
+Chatthistorik sparas automatiskt efter varje meddelande:
 - Format: `chat_YYYY-MM-DD_HH-mm-ss_[session-id].json`
 - Plats: `ChatFiles/` (samma nivå som Program.cs)
 - JSON-format för enkel parsning
