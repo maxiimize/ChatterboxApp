@@ -45,7 +45,7 @@ cd Chatterbox
 
 #### A. Sätt environment variable (Windows)
 ```cmd
-setx OPENAIKEY "854V56KY31n4jOv9qreQh96pvg0mHLlP6a3pkPmVV0Bmnasmlme8JQQJ99BJACfhMk5XJ3w3AAABACOGsTdQ"
+setx OPENAIKEY "Your-Api-Key"
 ```
 
 #### B. Uppdatera `Services/AzureOpenAIService.cs`
